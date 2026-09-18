@@ -1,0 +1,105 @@
+# ==========================================
+# Python
+# ==========================================
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Testing and coverage
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py.class
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# ==========================================
+# Android Studio / Android
+# ==========================================
+# Build outputs
+*.apk
+*.aab
+*.aar
+bin/
+gen/
+out/
+build/
+.gradle/
+
+# Android Studio project files
+.idea/
+*.iml
+.navigation/
+captures/
+
+# Local configuration file (contains path to local SDK)
+local.properties
+
+# Android Studio / IntelliJ project setting overrides
+.idea/workspace.xml
+.idea/navFolder.xml
+.idea/assetWizardSettings.xml
+.idea/caches/
+.idea/libraries/
+
+# Keystore files
+*.jks
+*.keystore
+
+# NDK / C++ build output
+.externalNativeBuild
+.cxx/
+
+# Log files
+*.log
+
+# ==========================================
+# Operating System Files
+# ==========================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
