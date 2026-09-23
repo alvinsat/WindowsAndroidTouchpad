@@ -1,1 +1,1 @@
-pyinstaller --onefile --uac-admin server.py
+pyinstaller --onefile --uac-admin src/server.py
