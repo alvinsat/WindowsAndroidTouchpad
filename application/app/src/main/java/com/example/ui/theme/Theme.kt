@@ -1,51 +1,35 @@
 package com.example.ui.theme
 
-import android.os.Build
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.graphics.Color
 
-private val DarkColorScheme =
-  darkColorScheme(
-    primary = CyanPrimary,
-    onPrimary = DarkBackground,
-    primaryContainer = DarkSurfaceElevated,
-    onPrimaryContainer = CyanTertiary,
-    secondary = CyanSecondary,
-    onSecondary = DarkBackground,
-    background = DarkBackground,
+private val PS1ColorScheme =
+  lightColorScheme(
+    primary = PS1Blue,
+    onPrimary = Color.White,
+    primaryContainer = PS1Surface,
+    onPrimaryContainer = PS1Blue,
+    secondary = PS1Green,
+    onSecondary = Color.White,
+    tertiary = PS1Pink,
+    onTertiary = Color.White,
+    background = PS1Background,
     onBackground = TextPrimary,
-    surface = DarkSurface,
+    surface = PS1Surface,
     onSurface = TextPrimary,
-    surfaceVariant = DarkSurfaceElevated,
+    surfaceVariant = PS1SurfaceElevated,
     onSurfaceVariant = TextSecondary,
-    outline = DarkSurfaceBorder
+    outline = PS1SurfaceBorder
   )
-
-private val LightColorScheme = DarkColorScheme
 
 @Composable
 fun MyApplicationTheme(
-  darkTheme: Boolean = isSystemInDarkTheme(),
-  // Dynamic color is available on Android 12+
-  dynamicColor: Boolean = true,
+  darkTheme: Boolean = false,
+  dynamicColor: Boolean = false,
   content: @Composable () -> Unit,
 ) {
-  val colorScheme =
-    when {
-      dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-        val context = LocalContext.current
-        if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-      }
-
-      darkTheme -> DarkColorScheme
-      else -> LightColorScheme
-    }
-
-  MaterialTheme(colorScheme = colorScheme, typography = Typography, content = content)
+  MaterialTheme(colorScheme = PS1ColorScheme, typography = Typography, content = content)
 }
+

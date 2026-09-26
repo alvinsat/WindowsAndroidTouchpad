@@ -74,6 +74,76 @@ object VibrationHelper {
     }
   }
 
+  @Suppress("DEPRECATION")
+  fun vibrateMiddleClick(context: Context) {
+    try {
+      val vibrator = getVibrator(context) ?: return
+      if (!vibrator.hasVibrator()) return
+
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        val timings = longArrayOf(0, 15, 35, 15, 35, 15)
+        val amplitudes = intArrayOf(0, 180, 0, 200, 0, 230)
+        vibrator.vibrate(VibrationEffect.createWaveform(timings, amplitudes, -1))
+      } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        val timings = longArrayOf(0, 15, 35, 15, 35, 15)
+        vibrator.vibrate(VibrationEffect.createWaveform(timings, -1))
+      } else {
+        val pattern = longArrayOf(0, 15, 35, 15, 35, 15)
+        vibrator.vibrate(pattern, -1)
+      }
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed to vibrate for middle click: ${e.message}")
+    }
+  }
+
+  @Suppress("DEPRECATION")
+  fun vibrateDragState(context: Context, isStarting: Boolean) {
+    try {
+      val vibrator = getVibrator(context) ?: return
+      if (!vibrator.hasVibrator()) return
+
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        vibrator.vibrate(
+          VibrationEffect.createPredefined(
+            if (isStarting) VibrationEffect.EFFECT_HEAVY_CLICK else VibrationEffect.EFFECT_TICK
+          )
+        )
+      } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        vibrator.vibrate(
+          VibrationEffect.createOneShot(
+            if (isStarting) 30L else 15L,
+            VibrationEffect.DEFAULT_AMPLITUDE
+          )
+        )
+      } else {
+        vibrator.vibrate(if (isStarting) 30L else 15L)
+      }
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed to vibrate drag state: ${e.message}")
+    }
+  }
+
+  @Suppress("DEPRECATION")
+  fun vibrateNavigation(context: Context) {
+    try {
+      val vibrator = getVibrator(context) ?: return
+      if (!vibrator.hasVibrator()) return
+
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        vibrator.vibrate(VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK))
+      } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        val timings = longArrayOf(0, 18, 30, 24)
+        val amplitudes = intArrayOf(0, 190, 0, 240)
+        vibrator.vibrate(VibrationEffect.createWaveform(timings, amplitudes, -1))
+      } else {
+        val pattern = longArrayOf(0, 18, 30, 24)
+        vibrator.vibrate(pattern, -1)
+      }
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed to vibrate for navigation: ${e.message}")
+    }
+  }
+
   private fun getVibrator(context: Context): Vibrator? {
     return try {
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
